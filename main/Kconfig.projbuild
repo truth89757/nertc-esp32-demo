@@ -398,6 +398,13 @@ config USE_AFE_WAKE_WORD
     help
         需要 ESP32 S3 与 PSRAM 支持
 
+config USE_AFE_NERTC_WAKE_WORD
+    bool "Enable nertc Wake Word Detection (AFE)"
+    default n
+    depends on (IDF_TARGET_ESP32S3 || IDF_TARGET_ESP32P4) && SPIRAM
+    help
+        需要 ESP32 S3 与 PSRAM 支持
+
 config USE_AUDIO_PROCESSOR
     bool "Enable Audio Noise Reduction"
     default y

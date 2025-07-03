@@ -23,11 +23,14 @@
 
 #if CONFIG_USE_AFE_WAKE_WORD
 #include "afe_wake_word.h"
+#elif CONFIG_USE_AFE_NERTC_WAKE_WORD
+#include "multinet_afe_wake_word.h"
 #elif CONFIG_USE_ESP_WAKE_WORD
 #include "esp_wake_word.h"
 #else
 #include "no_wake_word.h"
 #endif
+
 
 #include <cstring>
 #include <esp_log.h>
@@ -72,6 +75,8 @@ Application::Application() {
 
 #if CONFIG_USE_AFE_WAKE_WORD
     wake_word_ = std::make_unique<AfeWakeWord>();
+#elif CONFIG_USE_AFE_NERTC_WAKE_WORD
+    wake_word_ = std::make_unique<MultinetAfeWakeWord>();
 #elif CONFIG_USE_ESP_WAKE_WORD
     wake_word_ = std::make_unique<EspWakeWord>();
 #else
